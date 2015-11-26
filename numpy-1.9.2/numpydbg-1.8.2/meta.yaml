@@ -1,0 +1,48 @@
+package:
+  name: numpy
+  version: "1.8.2"
+
+source:
+  url: https://pypi.python.org/packages/source/n/numpy/numpy-1.8.2.tar.gz
+  fn: numpy-1.8.2.tar.gz                     [unix or (win and mkl)]
+  md5: cdd1a0d14419d8a8253400d8ca8cba42      [unix or (win and mkl)]
+  fn: numpy-MKL-1.8.2.win32-py2.6.exe        [win32 and py26 and not mkl]
+  fn: numpy-MKL-1.8.2.win-amd64-py2.6.exe    [win64 and py26 and not mkl]
+  fn: numpy-MKL-1.8.2.win32-py2.7.exe        [win32 and py27 and not mkl]
+  fn: numpy-MKL-1.8.2.win-amd64-py2.7.exe    [win64 and py27 and not mkl]
+  fn: numpy-MKL-1.8.2.win32-py3.3.exe        [win32 and py33 and not mkl]
+  fn: numpy-MKL-1.8.2.win-amd64-py3.3.exe    [win64 and py33 and not mkl]
+  fn: numpy-MKL-1.8.2.win32-py3.4.exe        [win32 and py34 and not mkl]
+  fn: numpy-MKL-1.8.2.win-amd64-py3.4.exe    [win64 and py34 and not mkl]
+  patches:
+    - osx-dist.patch          [osx]
+
+build:
+  features:
+    - pydbg
+  string: 2_dbg
+  number: 2
+
+requirements:
+  build:
+    - pydbg
+    - python
+    #- atlas                   [linux and not armv6]
+    - system      [linux]
+  run:
+    - pydbg
+    - python
+    - system      [linux]
+
+test:
+  requires:
+    - pydbg
+    - nose
+  commands:
+    - f2py -h                 [py2k]
+  imports:
+    - numpy
+
+about:
+  home: http://numpy.scipy.org/
+  license: BSD

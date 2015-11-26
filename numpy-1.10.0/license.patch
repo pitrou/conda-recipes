@@ -1,0 +1,21 @@
+diff --git numpy/linalg/lapack_litemodule.c numpy/linalg/lapack_litemodule.c
+index cc62382..835ba56 100644
+--- numpy/linalg/lapack_litemodule.c
++++ numpy/linalg/lapack_litemodule.c
+@@ -332,6 +332,8 @@ static struct PyModuleDef moduledef = {
+ };
+ #endif
+ 
++/*MARK1*/
++
+ /* Initialization function for the module */
+ #if PY_MAJOR_VERSION >= 3
+ #define RETVAL m
+@@ -353,6 +353,7 @@ initlapack_lite(void)
+     if (m == NULL) {
+         return RETVAL;
+     }
++    /*MARK2*/
+     import_array();
+     d = PyModule_GetDict(m);
+     LapackError = PyErr_NewException("lapack_lite.LapackError", NULL, NULL);

@@ -1,0 +1,14 @@
+diff --git numpy/__init__.py numpy/__init__.py
+index 532ec14..480f69e 100644
+--- numpy/__init__.py
++++ numpy/__init__.py
+@@ -106,7 +106,9 @@ Exceptions to this rule are documented.
+ """
+ from __future__ import division, absolute_import, print_function
+ 
++import os
+ import sys
++os.environ['PATH'] = r'%s\DLLs;%s' % (sys.prefix, os.environ['PATH'])
+ 
+ 
+ class ModuleDeprecationWarning(DeprecationWarning):

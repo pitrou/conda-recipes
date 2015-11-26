@@ -1,0 +1,35 @@
+package:
+  name: numpy
+  version: "1.10.0rc2"
+
+source:
+  url: http://sourceforge.net/projects/numpy/files/NumPy/1.10.0rc2/numpy-1.10.0rc2.tar.gz
+  fn: numpy-1.10.0rc2.tar.gz
+  #sha256: 89e467cec774527dd254c1e039801726db1367433053801f0d8bc68deac74009
+  patches:
+    - osx-dist.patch          [osx]
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - python
+    #- atlas                   [linux and not armv6]
+    - system      [linux]
+  run:
+    #- pydbg
+    - python
+    - system      [linux]
+
+test:
+  requires:
+    - nose
+  commands:
+    - f2py -h                 [py2k]
+  imports:
+    - numpy
+
+about:
+  home: http://numpy.scipy.org/
+  license: BSD

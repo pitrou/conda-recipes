@@ -1,0 +1,25 @@
+diff --git numpy/__init__.py numpy/__init__.py
+index 532ec14..73f3562 100644
+--- numpy/__init__.py
++++ numpy/__init__.py
+@@ -107,7 +107,9 @@ Exceptions to this rule are documented.
+ from __future__ import division, absolute_import, print_function
+ 
+ import sys
+-
++import ctypes
++_old_rtld = sys.getdlopenflags()
++sys.setdlopenflags(_old_rtld | ctypes.RTLD_GLOBAL)
+ 
+ class ModuleDeprecationWarning(DeprecationWarning):
+     """Module deprecation warning.
+@@ -195,3 +197,9 @@ else:
+     import warnings
+     warnings.filterwarnings("ignore", message="numpy.dtype size changed")
+     warnings.filterwarnings("ignore", message="numpy.ufunc size changed")
++
++sys.setdlopenflags(_old_rtld)
++del _old_rtld
++del sys
++del ctypes
++__mkl_version__ = $MKL_VERSION

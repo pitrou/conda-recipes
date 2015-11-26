@@ -1,0 +1,49 @@
+package:
+  name: python
+  version: "3.5.0rc4"
+
+source:
+  fn: cpython.tgz
+  url: https://hg.python.org/cpython/archive/3.5.tar.gz
+  #md5: 5566bc7e1fdf6bed45f9a750d5f80fc2
+  patches:
+    - version.patch
+    - osx-dist.patch        [osx]
+    - win-find_exe.patch    [win]
+    - win-cygwin.patch      [win]
+
+build:
+  no_link: bin/python
+  number: 4
+#  features:
+#    - pydbg
+
+requirements:
+  build:
+    - bzip2       [unix]
+    - zlib        [unix]
+    - sqlite      [unix]
+    - readline    [unix]
+    - tk          [unix]
+    - openssl     [unix]
+    - system      [linux]
+  run:
+    - zlib        [unix]
+    - sqlite      [unix]
+    - readline    [unix]
+    - tk          [unix]
+    - openssl     [unix]
+    - system      [linux]
+
+test:
+  requires:
+    - pydbg
+  commands:
+    - python -V               [unix]
+    - python3 -V              [unix]
+    - 2to3 -h                 [unix]
+    - python3-config --help   [unix]
+
+about:
+  home: http://www.python.org/
+  license: PSF

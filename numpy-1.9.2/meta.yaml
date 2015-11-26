@@ -1,0 +1,43 @@
+package:
+  name: numpy
+  version: "1.9.2"
+
+source:
+  url: http://downloads.sourceforge.net/project/numpy/NumPy/1.9.2/numpy-1.9.2.tar.gz
+  fn: numpy-1.9.2.tar.gz                       [unix or (win and mkl)]
+  md5: a1ed53432dbcd256398898d35bc8e645        [unix or (win and mkl)]
+  fn: numpy-1.9.2+mkl-cp26-none-win32.whl      [win32 and py26 and not mkl]
+  fn: numpy-1.9.2+mkl-cp26-none-win_amd64.whl  [win64 and py26 and not mkl]
+  fn: numpy-1.9.2+mkl-cp27-none-win32.whl      [win32 and py27 and not mkl]
+  fn: numpy-1.9.2+mkl-cp27-none-win_amd64.whl  [win64 and py27 and not mkl]
+  fn: numpy-1.9.2+mkl-cp33-none-win32.whl      [win32 and py33 and not mkl]
+  fn: numpy-1.9.2+mkl-cp33-none-win_amd64.whl  [win64 and py33 and not mkl]
+  fn: numpy-1.9.2+mkl-cp34-none-win32.whl      [win32 and py34 and not mkl]
+  fn: numpy-1.9.2+mkl-cp34-none-win_amd64.whl  [win64 and py34 and not mkl]
+  patches:
+    - osx-dist.patch          [osx]
+
+build:
+  number: 3
+
+requirements:
+  build:
+    - python
+    #- atlas                   [linux and not armv6]
+    - system      [linux]
+  run:
+    #- pydbg
+    - python
+    - system      [linux]
+
+test:
+  requires:
+    - nose
+  commands:
+    - f2py -h                 [py2k]
+  imports:
+    - numpy
+
+about:
+  home: http://numpy.scipy.org/
+  license: BSD

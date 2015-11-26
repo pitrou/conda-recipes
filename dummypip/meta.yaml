@@ -1,0 +1,11 @@
+package:
+  name: pip
+  # Version should be small enough to not clash with actual pip package, if it exists
+  version: "0.0.1"
+
+build:
+  number: 0
+
+requirements:
+  run:
+    - python
